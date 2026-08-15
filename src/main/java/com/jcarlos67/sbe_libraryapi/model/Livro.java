@@ -3,6 +3,7 @@ package com.jcarlos67.sbe_libraryapi.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -31,7 +32,7 @@ public class Livro {
   private String genero;
 
   @Column(name = "preco", nullable = false, precision = 18, scale = 2)
-  private Double preco;
+  private BigDecimal preco;
 
   @ManyToOne
   @JoinColumn(name = "autor_id")
