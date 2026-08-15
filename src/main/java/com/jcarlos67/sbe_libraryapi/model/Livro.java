@@ -1,5 +1,6 @@
 package com.jcarlos67.sbe_libraryapi.model;
 
+import com.jcarlos67.sbe_libraryapi.model.enums.GeneroLivro;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,13 +30,13 @@ public class Livro {
 
   @Enumerated(EnumType.STRING)
   @Column(name = "genero", length = 30, nullable = false)
-  private String genero;
+  private GeneroLivro genero;
 
   @Column(name = "preco", nullable = false, precision = 18, scale = 2)
   private BigDecimal preco;
 
   @ManyToOne
-  @JoinColumn(name = "autor_id")
+  @JoinColumn(name = "id_autor")
   private Autor autor;
 
 }

@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Autor {
 
   @Id
-  @Column(name = "autor")
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.UUID)
   @Setter(AccessLevel.NONE)
   private UUID id;
@@ -29,7 +29,8 @@ public class Autor {
   @Column(name = "nacionalidade", length = 50, nullable = false)
   private String nacionalidade;
 
-  @OneToMany(mappedBy = "autor")
+//  @OneToMany(mappedBy = "autor")
+  @Transient
   private List<Livro> livros;
 
 }
