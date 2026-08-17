@@ -8,5 +8,11 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LivroRepository extends JpaRepository<Livro, UUID> {
+
   List<Livro> findByAutor(Autor autor);
+
+  List<Livro> findByTitulo(String titulo);
+
+  List<Livro> findByIsbn(String isbn);
+
 }
