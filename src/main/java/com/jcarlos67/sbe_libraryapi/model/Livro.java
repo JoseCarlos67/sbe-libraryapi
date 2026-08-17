@@ -36,7 +36,7 @@ public class Livro {
   @Column(name = "preco", nullable = false, precision = 18, scale = 2)
   private BigDecimal preco;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_autor")
   private Autor autor;
 

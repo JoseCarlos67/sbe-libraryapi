@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -30,4 +31,32 @@ public class LivroRepositoryTest {
     livroRepository.save(livro);
   }
 
+  @Test
+  void atualizarAutorLivroTest() {
+    UUID id = UUID.fromString("439264cf-c54a-47cf-860f-d079f03d68f3");
+    Livro livroParaAtualizar = livroRepository.findById(id).orElse(null);
+
+    UUID idAutor = UUID.fromString("4bdb98c3-41a5-4608-9f93-f9d003424462");
+    Autor carlos = autorRepository.findById(idAutor).orElse(null);
+
+    livroParaAtualizar.setAutor(carlos);
+
+    livroRepository.save(livroParaAtualizar);
+  }
+
+  @Test
+  void deletarLivroPorIdTest() {
+    UUID id = UUID.fromString("439264cf-c54a-47cf-860f-d079f03d68f3");
+    livroRepository.deleteById(id);
+  }
+
+  @Test
+  @Transactional
+  void buscarLivroTest() {
+    UUID idLivro = UUID.fromString("d5a4cbbd-8a18-4427-a297-270ff03510ba");
+    Livro livro = livroRepository.findById(idLivro).orElse(null);
+    System.out.println(livro.getTitulo());
+    System.out.println(livro.getAutor().getNome());
+
+  }
 }
