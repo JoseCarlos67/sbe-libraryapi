@@ -4,7 +4,6 @@ import com.jcarlos67.sbe_libraryapi.controller.dto.AutorDTO;
 import com.jcarlos67.sbe_libraryapi.controller.dto.AutorRespostaDTO;
 import com.jcarlos67.sbe_libraryapi.model.Autor;
 import com.jcarlos67.sbe_libraryapi.service.AutorService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -86,6 +85,25 @@ public class AutorController {
             .collect(Collectors.toList());
 
             return ResponseEntity.ok(lista);
+  }
+
+  @PutMapping("{id}")
+  public ResponseEntity<Void> atualizar(
+          @PathVariable UUID id,  @RequestBody AutorDTO dto) {
+    Optional<Autor> autorOptional = service.obterPorId(id);
+
+    if(autorOptional.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    Autor autor = autorOptional.get();
+    autor.setNome(dto.nome());
+    autor.setNacionalidade(dto.nacionalidade());
+    autor.setDataNascimento(dto.dataNascimento());
+
+    service.atualizar(autor);
+
+    return ResponseEntity.noContent().build();
   }
 
 }
