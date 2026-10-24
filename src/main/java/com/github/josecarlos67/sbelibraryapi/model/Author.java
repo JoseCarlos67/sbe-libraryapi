@@ -22,12 +22,13 @@ public class Author {
   private String name;
 
   @Column(name = "date_birth")
-  private LocalDate dataBirth;
+  private LocalDate dateBirth;
 
   @Column(length = 50)
   private String nationality;
 
-  @OneToMany(mappedBy = "idAuthor")
+//  @OneToMany(mappedBy = "idAuthor")
+  @Transient
   private List<Book> bookList;
 
 }
