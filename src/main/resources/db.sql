@@ -6,12 +6,12 @@ create table author
     nationality varchar(50)  not null
 );
 
-
 create table book
 (
     id               uuid           not null primary key,
-    name             varchar(100)   not null,
-    data_publication date           not null,
+    title            varchar(100)   not null,
+    isbn             varchar(20)    not null,
+    date_publication date           not null,
     price            numeric(18, 2) not null,
     id_author        uuid           not null references author (id),
     genre            varchar(30)    not null,
@@ -20,10 +20,8 @@ create table book
                                           'ROMANCE',
                                           'MISTERIO',
                                           'BIOGRAFIA',
-                                          'CIENCIA'
-        ))
+                                          'CIENCIA'))
 );
-
 
 select *
 from author;
